@@ -12,7 +12,7 @@ export default function CompanyDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/dashboard/company/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + `/api/dashboard/company/${user.id}`)
             .then(r => r.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -98,7 +98,7 @@ export default function CompanyDashboard() {
                                     {data.leaderboard.slice(0, 5).map(c => (
                                         <tr key={`${c.student_id}-${c.job_id}`}>
                                             <td>
-                                                <div className={`leaderboard-rank ${c.rank === 1 ? 'gold' : c.rank === 2 ? 'silver' : c.rank === 3 ? 'bronze' : 'default'}`}>
+                                                <div className={'leaderboard-rank ${c.rank === 1 ? 'gold' : c.rank === 2 ? 'silver' : c.rank === 3 ? 'bronze' : 'default'}`}>
                                                     {c.rank}
                                                 </div>
                                             </td>

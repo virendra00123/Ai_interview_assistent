@@ -10,7 +10,7 @@ export default function CompanyProfile() {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/companies/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + `/api/companies/${user.id}`)
             .then(r => r.json())
             .then(d => { setProfile(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -19,7 +19,7 @@ export default function CompanyProfile() {
     const handleSave = async () => {
         setSaving(true); setMessage('');
         try {
-            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/companies/${user.id}`, {
+            const res = await fetch((import.meta.env.VITE_API_URL || '') + `/api/companies/${user.id}`, {
                 method: 'PUT', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(profile)
             });

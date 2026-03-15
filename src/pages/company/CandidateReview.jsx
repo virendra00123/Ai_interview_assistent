@@ -10,7 +10,7 @@ export default function CandidateReview() {
     const [loading, setLoading] = useState(true);
 
     const fetchCandidates = () => {
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/companies/${user.id}/candidates`)
+        fetch((import.meta.env.VITE_API_URL || '') + `/api/companies/${user.id}/candidates`)
             .then(r => r.json())
             .then(d => { setCandidates(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -19,7 +19,7 @@ export default function CandidateReview() {
     useEffect(() => { fetchCandidates(); }, [user.id]);
 
     const updateStatus = async (appId, status) => {
-        await fetch((import.meta.env.VITE_API_URL || '') + '/api/applications/${appId}/status`, {
+        await fetch((import.meta.env.VITE_API_URL || '') + `/api/applications/${appId}/status`, {
             method: 'PUT', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status })
         });
@@ -49,7 +49,7 @@ export default function CandidateReview() {
                 </div>
                 <div className="tabs" style={{ marginBottom: 0 }}>
                     {['all', 'pending', 'reviewed', 'shortlisted', 'accepted', 'rejected'].map(s => (
-                        <button key={s} className={`tab ${filter === s ? 'active' : ''}`} onClick={() => setFilter(s)} style={{ textTransform: 'capitalize' }}>
+                        <button key={s} className={'tab ${filter === s ? 'active' : ''}'} onClick={() => setFilter(s)} style={{ textTransform: 'capitalize' }}>
                             {s}
                         </button>
                     ))}

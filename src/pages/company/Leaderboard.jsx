@@ -8,7 +8,7 @@ export default function Leaderboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/dashboard/company/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + `/api/dashboard/company/${user.id}`)
             .then(r => r.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -40,7 +40,7 @@ export default function Leaderboard() {
                                 const colors = ['#94a3b8', '#f59e0b', '#ec4899'];
                                 const heights = ['180px', '220px', '160px'];
                                 return (
-                                    <div key={`${c.student_id}-${c.job_id}`} className="card animate-in" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: heights[i] }}>
+                                    <div key={`${c.student_id}-${c.job_id}'} className="card animate-in" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', minHeight: heights[i] }}>
                                         <Icon size={32} style={{ color: colors[i], margin: '0 auto 12px' }} />
                                         <div style={{ fontSize: 14, fontWeight: 600, color: colors[i], marginBottom: 4 }}>#{rank}</div>
                                         <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{c.name}</div>
@@ -66,7 +66,7 @@ export default function Leaderboard() {
                                     {leaderboard.map(c => (
                                         <tr key={`${c.student_id}-${c.job_id}`}>
                                             <td>
-                                                <div className={`leaderboard-rank ${c.rank === 1 ? 'gold' : c.rank === 2 ? 'silver' : c.rank === 3 ? 'bronze' : 'default'}`}>
+                                                <div className={'leaderboard-rank ${c.rank === 1 ? 'gold' : c.rank === 2 ? 'silver' : c.rank === 3 ? 'bronze' : 'default'}`}>
                                                     {c.rank}
                                                 </div>
                                             </td>

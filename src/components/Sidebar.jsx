@@ -53,8 +53,8 @@ export default function Sidebar() {
             <button className="mobile-toggle" onClick={() => setOpen(!open)}>
                 {open ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <div className={`sidebar-overlay ${open ? 'open' : ''}`} onClick={() => setOpen(false)} />
-            <aside className={`sidebar ${open ? 'open' : ''}`}>
+            <div className={'sidebar-overlay ${open ? 'open' : ''}`} onClick={() => setOpen(false)} />
+            <aside className={'sidebar ${open ? 'open' : ''}`}>
                 <div className="sidebar-header">
                     <div className="sidebar-logo">
                         <div className="sidebar-logo-icon"><Bot size={22} /></div>
@@ -73,7 +73,7 @@ export default function Sidebar() {
                                 <NavLink
                                     key={item.to}
                                     to={item.to}
-                                    className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+                                    className={({ isActive }) => 'sidebar-link ${isActive ? 'active' : ''}`}
                                     onClick={() => setOpen(false)}
                                 >
                                     <item.icon size={20} />

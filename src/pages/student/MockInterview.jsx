@@ -857,7 +857,7 @@ export default function MockInterview() {
         }
     };
 
-    const formatTime = (s) => `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
+    const formatTime = (s) => '${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
     const timerClass = timer <= 10 ? 'danger' : timer <= 30 ? 'warning' : '';
     const scoreColor = (s) => s >= 80 ? 'var(--accent-green)' : s >= 60 ? 'var(--accent-orange)' : 'var(--accent-red)';
 
@@ -878,7 +878,7 @@ export default function MockInterview() {
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
                         {roles.map(r => (
-                            <div key={r} className={`role-option ${role === r ? 'selected' : ''}`}
+                            <div key={r} className={'role-option ${role === r ? 'selected' : ''}`}
                                 onClick={() => setRole(r)} style={{ display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left' }}>
                                 <Video size={20} style={{ color: role === r ? 'var(--accent-purple)' : 'var(--text-muted)' }} />
                                 <span className="role-option-label">{r}</span>
@@ -919,13 +919,13 @@ export default function MockInterview() {
                         )}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginBottom: 20 }}>
-                        <button className={`iv2-ctrl-btn ${cameraOn ? 'on' : 'off'}`} onClick={() => {
+                        <button className={'iv2-ctrl-btn ${cameraOn ? 'on' : 'off'}`} onClick={() => {
                             const track = streamRef.current?.getVideoTracks()[0];
                             if (track) { track.enabled = !track.enabled; setCameraOn(track.enabled); }
                         }}>
                             {cameraOn ? <Camera size={18} /> : <CameraOff size={18} />}
                         </button>
-                        <button className={`iv2-ctrl-btn ${micOn ? 'on' : 'off'}`} onClick={() => {
+                        <button className={'iv2-ctrl-btn ${micOn ? 'on' : 'off'}`} onClick={() => {
                             const track = streamRef.current?.getAudioTracks()[0];
                             if (track) { track.enabled = !track.enabled; setMicOn(track.enabled); }
                         }}>
@@ -952,7 +952,7 @@ export default function MockInterview() {
                 {/* Behavior Alerts */}
                 <div className="iv2-alerts-container">
                     {alerts.map(a => (
-                        <div key={a.id} className={`iv2-alert ${a.type}`} style={{ '--alert-duration': '3.5s' }}>
+                        <div key={a.id} className={`iv2-alert ${a.type}'} style={{ '--alert-duration': '3.5s' }}>
                             <span className="iv2-alert-icon" style={{ fontSize: 18 }}>{a.icon}</span>
                             <span className="iv2-alert-text">{a.text}</span>
                         </div>
@@ -976,30 +976,30 @@ export default function MockInterview() {
                         </div>
                         {/* Real-time detection indicators */}
                         <div className="iv2-detection-status">
-                            <span className={`iv2-detect-dot ${detectionStatus.faceDetected ? 'active' : 'inactive'}`}
+                            <span className={'iv2-detect-dot ${detectionStatus.faceDetected ? 'active' : 'inactive'}`}
                                 title={detectionStatus.faceDetected ? 'Face detected' : 'No face detected'}>
                                 {detectionStatus.faceDetected ? '😊' : '❌'}
                             </span>
                             {detectionStatus.eyeContact !== null && (
-                                <span className={`iv2-detect-dot ${detectionStatus.eyeContact ? 'good' : 'bad'}`}
+                                <span className={'iv2-detect-dot ${detectionStatus.eyeContact ? 'good' : 'bad'}`}
                                     title={detectionStatus.eyeContact ? 'Good eye contact' : 'Look at camera'}>
                                     👁️
                                 </span>
                             )}
                             {detectionStatus.posture !== null && (
-                                <span className={`iv2-detect-dot ${detectionStatus.posture ? 'good' : 'bad'}`}
+                                <span className={'iv2-detect-dot ${detectionStatus.posture ? 'good' : 'bad'}`}
                                     title={detectionStatus.posture ? 'Good posture' : 'Adjust posture'}>
                                     🪑
                                 </span>
                             )}
                         </div>
                         <div className="iv2-controls">
-                            <button className={`iv2-ctrl-btn ${cameraOn ? 'on' : 'off'}`} onClick={() => {
+                            <button className={'iv2-ctrl-btn ${cameraOn ? 'on' : 'off'}`} onClick={() => {
                                 const t = streamRef.current?.getVideoTracks()[0]; if (t) { t.enabled = !t.enabled; setCameraOn(t.enabled); }
                             }}>
                                 {cameraOn ? <Camera size={16} /> : <CameraOff size={16} />}
                             </button>
-                            <button className={`iv2-ctrl-btn ${micOn ? 'on' : 'off'}`} onClick={() => {
+                            <button className={'iv2-ctrl-btn ${micOn ? 'on' : 'off'}`} onClick={() => {
                                 const t = streamRef.current?.getAudioTracks()[0]; if (t) { t.enabled = !t.enabled; setMicOn(t.enabled); }
                             }}>
                                 {micOn ? <Mic size={16} /> : <MicOff size={16} />}
@@ -1012,8 +1012,8 @@ export default function MockInterview() {
                         <div className="iv2-q-header">
                             <span className="iv2-q-badge">Question {currentQ + 1} of {questions.length}</span>
                             <div className="iv2-lang-toggle">
-                                <button className={`iv2-lang-btn ${language === 'en-IN' ? 'active' : ''}`} onClick={() => setLanguage('en-IN')}>EN</button>
-                                <button className={`iv2-lang-btn ${language === 'hi-IN' ? 'active' : ''}`} onClick={() => setLanguage('hi-IN')}>हिं</button>
+                                <button className={'iv2-lang-btn ${language === 'en-IN' ? 'active' : ''}'} onClick={() => setLanguage('en-IN')}>EN</button>
+                                <button className={'iv2-lang-btn ${language === 'hi-IN' ? 'active' : ''}'} onClick={() => setLanguage('hi-IN')}>हिं</button>
                             </div>
                         </div>
 
@@ -1053,13 +1053,13 @@ export default function MockInterview() {
                         {answerMode === 'voice' && (
                             <div className="iv2-transcript-area">
                                 <div className="iv2-transcript-label" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                    <div className={`iv2-speech-dot ${isListening ? '' : 'idle'}`} />
+                                    <div className={'iv2-speech-dot ${isListening ? '' : 'idle'}`} />
                                     {isListening ? 'Recording…' : speechComplete ? 'Speech complete ✓' : 'Stopped'}
                                     <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>
                                         {language === 'hi-IN' ? 'हिंदी' : 'English'}
                                     </span>
                                 </div>
-                                <div className={`iv2-transcript-text ${isListening ? 'listening' : ''}`}>
+                                <div className={'iv2-transcript-text ${isListening ? 'listening' : ''}`}>
                                     {transcript || interimTranscript ? (
                                         <>{transcript}<span style={{ color: 'var(--accent-purple)', fontStyle: 'italic' }}>{interimTranscript}</span></>
                                     ) : (
@@ -1107,7 +1107,7 @@ export default function MockInterview() {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 13, color: 'var(--text-secondary)' }}>
                             <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                                <div className={`iv2-speech-dot ${isListening ? '' : 'idle'}`} style={{ width: 8, height: 8 }} />
+                                <div className={'iv2-speech-dot ${isListening ? '' : 'idle'}`} style={{ width: 8, height: 8 }} />
                                 {isListening ? 'Recognizing speech…' : 'Mic active'}
                             </span>
                             <span>•</span>

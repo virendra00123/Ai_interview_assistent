@@ -45,7 +45,7 @@ export default function SignupPage() {
                             <label className="form-label">I am a...</label>
                             <div className="role-selector">
                                 <div
-                                    className={`role-option ${role === 'student' ? 'selected' : ''}`}
+                                    className={'role-option ${role === 'student' ? 'selected' : ''}`}
                                     onClick={() => setRole('student')}
                                 >
                                     <span className="role-option-icon"><GraduationCap size={28} /></span>
@@ -53,7 +53,7 @@ export default function SignupPage() {
                                     <div className="role-option-desc">Prepare for interviews</div>
                                 </div>
                                 <div
-                                    className={`role-option ${role === 'company' ? 'selected' : ''}`}
+                                    className={'role-option ${role === 'company' ? 'selected' : ''}`}
                                     onClick={() => setRole('company')}
                                 >
                                     <span className="role-option-icon"><Building2 size={28} /></span>

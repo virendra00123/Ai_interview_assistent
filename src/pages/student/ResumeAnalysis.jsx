@@ -13,7 +13,7 @@ export default function ResumeAnalysis() {
     const [uploading, setUploading] = useState(false);
 
     const fetchAnalysis = () => {
-        fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}/resume-analysis`)
+        fetch((import.meta.env.VITE_API_URL || '') + `/api/students/${user.id}/resume-analysis`)
             .then(r => r.json())
             .then(d => { setAnalysis(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -28,7 +28,7 @@ export default function ResumeAnalysis() {
         const formData = new FormData();
         formData.append('resume', file);
         try {
-            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}/resume`, { method: 'POST', body: formData });
+            const res = await fetch((import.meta.env.VITE_API_URL || '') + `/api/students/${user.id}/resume`, { method: 'POST', body: formData });
             const data = await res.json();
             setAnalysis(data);
         } catch (err) {
