@@ -19,7 +19,7 @@ export default function InterviewReport() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/students/${user.id}/interviews`)
+        fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}/interviews`)
             .then(r => r.json())
             .then(d => { setInterviews(d); if (d.length > 0) setSelected(d[0]); setLoading(false); })
             .catch(() => setLoading(false));

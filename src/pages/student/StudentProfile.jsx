@@ -11,7 +11,7 @@ export default function StudentProfile() {
     const [newSkill, setNewSkill] = useState('');
 
     useEffect(() => {
-        fetch(`/api/students/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}`)
             .then(r => r.json())
             .then(d => { setProfile(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -21,7 +21,7 @@ export default function StudentProfile() {
         setSaving(true);
         setMessage('');
         try {
-            const res = await fetch(`/api/students/${user.id}`, {
+            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -79,7 +79,7 @@ export default function StudentProfile() {
         const formData = new FormData();
         formData.append('resume', file);
         try {
-            const res = await fetch(`/api/students/${user.id}/resume`, { method: 'POST', body: formData });
+            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/students/${user.id}/resume`, { method: 'POST', body: formData });
             const data = await res.json();
             setProfile({ ...profile, resume_file: data.file, resume_score: data.score });
             setMessage('Resume uploaded and analyzed!');

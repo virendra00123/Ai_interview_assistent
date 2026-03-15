@@ -12,7 +12,7 @@ export default function CompanyDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/dashboard/company/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + '/api/dashboard/company/${user.id}`)
             .then(r => r.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(() => setLoading(false));

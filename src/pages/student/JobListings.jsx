@@ -12,8 +12,8 @@ export default function JobListings() {
 
     useEffect(() => {
         Promise.all([
-            fetch('/api/jobs').then(r => r.json()),
-            fetch(`/api/applications/student/${user.id}`).then(r => r.json())
+            fetch((import.meta.env.VITE_API_URL || '') + '/api/jobs').then(r => r.json()),
+            fetch((import.meta.env.VITE_API_URL || '') + '/api/applications/student/${user.id}`).then(r => r.json())
         ]).then(([j, a]) => {
             setJobs(j); setApps(a); setLoading(false);
         }).catch(() => setLoading(false));
@@ -22,11 +22,11 @@ export default function JobListings() {
     const apply = async (jobId) => {
         setApplying(jobId);
         try {
-            await fetch('/api/applications', {
+            await fetch((import.meta.env.VITE_API_URL || '') + '/api/applications', {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: user.id, jobId })
             });
-            const a = await fetch(`/api/applications/student/${user.id}`).then(r => r.json());
+            const a = await fetch((import.meta.env.VITE_API_URL || '') + '/api/applications/student/${user.id}`).then(r => r.json());
             setApps(a);
         } catch (err) { console.error(err); }
         setApplying(null);

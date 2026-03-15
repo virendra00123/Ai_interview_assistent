@@ -18,7 +18,7 @@ export default function StudentDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/dashboard/student/${user.id}`)
+        fetch((import.meta.env.VITE_API_URL || '') + '/api/dashboard/student/${user.id}`)
             .then(r => r.json())
             .then(d => { setData(d); setLoading(false); })
             .catch(() => setLoading(false));

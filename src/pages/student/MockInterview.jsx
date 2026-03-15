@@ -681,7 +681,7 @@ export default function MockInterview() {
         if (!role) return;
         setStage('preview');
         await startCamera();
-        const res = await fetch('/api/interviews/generate-questions', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/interviews/generate-questions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ role, skills: [] })
@@ -804,7 +804,7 @@ export default function MockInterview() {
                 const formData = new FormData();
                 formData.append('audio', ans.audioBlob, `answer_${Date.now()}.webm`);
                 try {
-                    const uploadRes = await fetch('/api/upload-audio', {
+                    const uploadRes = await fetch((import.meta.env.VITE_API_URL || '') + '/api/upload-audio', {
                         method: 'POST',
                         body: formData
                     });
@@ -844,7 +844,7 @@ export default function MockInterview() {
         };
 
         try {
-            const res = await fetch('/api/interviews', {
+            const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/interviews', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: user.id, type: 'mock', role, questions, answers: processedAnswers, speechMetrics })

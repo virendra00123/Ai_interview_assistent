@@ -12,7 +12,7 @@ export default function JobManagement() {
     const [skillInput, setSkillInput] = useState('');
 
     const fetchJobs = () => {
-        fetch(`/api/companies/${user.id}/jobs`)
+        fetch((import.meta.env.VITE_API_URL || '') + '/api/companies/${user.id}/jobs`)
             .then(r => r.json())
             .then(d => { setJobs(d); setLoading(false); })
             .catch(() => setLoading(false));
@@ -32,11 +32,11 @@ export default function JobManagement() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const company = await fetch(`/api/companies/${user.id}`).then(r => r.json());
+        const company = await fetch((import.meta.env.VITE_API_URL || '') + '/api/companies/${user.id}`).then(r => r.json());
         if (editing) {
-            await fetch(`/api/jobs/${editing}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+            await fetch((import.meta.env.VITE_API_URL || '') + '/api/jobs/${editing}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
         } else {
-            await fetch('/api/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, companyId: company.company_id }) });
+            await fetch((import.meta.env.VITE_API_URL || '') + '/api/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, companyId: company.company_id }) });
         }
         setShowModal(false);
         fetchJobs();
@@ -44,7 +44,7 @@ export default function JobManagement() {
 
     const deleteJob = async (id) => {
         if (!confirm('Delete this job posting?')) return;
-        await fetch(`/api/jobs/${id}`, { method: 'DELETE' });
+        await fetch((import.meta.env.VITE_API_URL || '') + '/api/jobs/${id}`, { method: 'DELETE' });
         fetchJobs();
     };
 

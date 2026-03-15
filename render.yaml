@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-interview-platform-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm run server
+    envVars:
+      - key: NODE_VERSION
+        value: 20
